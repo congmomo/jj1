@@ -8,7 +8,7 @@ jj1 is an json-rpc implemetation for java. json-rpc is a lightweight rpc protoco
 jj1 contains a service handler and a service proxy. the service handler is used by the server side to privide a json service. service proxy can be used from the client to access a service.
 
 = service proxy =
-if we have a service on http://example.xx/jj1/test and we want to call the method echo which has a string as parameter and returns this string we can use following code:
+if we have a service on http://jsolait.net/services/test.jsonrpc and we want to call the method echo which has a string as parameter and returns a string, we can use following code:
 {{{
 ServiceProxy proxy = new ServiceProxy("http://jsolait.net/services/test.jsonrpc");
 String result = (String)proxy.call("echo", "hello you!");
@@ -22,10 +22,10 @@ when you create a service handler you have to provide a context object. this obj
 <web-app>
   <servlet>
     <servlet-name>Jj1Servlet</servlet-name>
-    <servlet-class>com.googlecode.jj1.Jj1Servlet</servlet-class>
+    <servlet-class>com.googlecode.server.jj1.Jj1Servlet</servlet-class>
     <init-param>
       <param-name>services</param-name>
-      <param-value>test=com.googlecode.jj1.crap.TestServices</param-value>
+      <param-value>test=com.googlecode.jj1.test.TestServices</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
@@ -36,4 +36,3 @@ when you create a service handler you have to provide a context object. this obj
 }}}
 to configure the servlet you have to set the services parameter. it's a comma separated list of name = value pairs. the name is the contextname of the service, value is the name of the class. the contextname must be appended to the url. if a context named root is defined this service is called if you call the url without a context.
 if the context path of the webapp is "webservice", the url to call a method from the com.googlecode.jj1.crap.TestServices class is like "http://domain.xx/webservice/jj1/test". 
-
