@@ -1,0 +1,17 @@
+#summary jj1 documentation
+
+= what is jj1 =
+jj1 is an json-rpc implemetation for java. json-rpc is a lightweight rpc protocoll which uses json for messages. as json serializer and parser i use stringtree json, a lightwight json implementation.
+  * json-rpc specification: http://json-rpc.org/
+  * json specification: http://www.json.org/
+  * stringtree json: http://www.stringtree.org/stringtree-json.html
+jj1 contains a service handler and a service proxy. the service handler is used by the server side to privide a json service. service proxy can be used from the client to access a service.
+
+= service proxy =
+if we have a service on http://example.xx/jj1/test and we want to call the method echo which has a string as parameter and returns this string we can use following code:
+{{{
+ServiceProxy proxy = new ServiceProxy("http://jsolait.net/services/test.jsonrpc");
+String result = (String)proxy.call("echoo", "hello you!");
+System.out.println(result);
+}}}
+the above example should print "hello you!". if an error ocurs a JsonRpcException will be thrown.
