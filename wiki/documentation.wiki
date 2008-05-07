@@ -1,11 +1,11 @@
 #summary jj1 documentation
 
 = what is jj1 =
-jj1 is an json-rpc implemetation for java. json-rpc is a lightweight rpc protocoll which uses json for messages. as json serializer and parser i use stringtree json, a lightwight json implementation.
+jj1 is an json-rpc implementation for java. json-rpc is a lightweight rpc protocol which uses json for messages. as json serializer and parser i use stringtree json, a lightweight json implementation.
   * json-rpc specification: http://json-rpc.org/
   * json specification: http://www.json.org/
   * stringtree json: http://www.stringtree.org/stringtree-json.html
-jj1 contains a service handler and a service proxy. the service handler is used by the server side to privide a json service. service proxy can be used from the client to access a service.
+jj1 contains a service handler and a service proxy. the service handler is used by the server side to provide a json service. service proxy can be used from the client to access a service.
 
 = service proxy =
 if we have a service on http://jsolait.net/services/test.jsonrpc and we want to call the method echo which has a string as parameter and returns a string, we can use following code:
@@ -14,7 +14,7 @@ ServiceProxy proxy = new ServiceProxy("http://jsolait.net/services/test.jsonrpc"
 String result = (String)proxy.call("echo", "hello you!");
 System.out.println(result);
 }}}
-the above example should print "hello you!". if an error ocurs a JsonRpcException will be thrown.
+the above example should print "hello you!". if an error occurs a JsonRpcException will be thrown.
 
 = service handler =
 when you create a service handler you have to provide a context object. this object should provide the methods you want to call.
@@ -40,7 +40,7 @@ to configure the servlet you have to set the services parameter. it's a comma se
 if the context path of the webapp is "webservice", the url to call a method from the com.googlecode.jj1.crap.TestServices class is like "http://domain.xx/webservice/jj1/test". 
 
 == context objects ==
-to define a service you need to create a common java object. you can make some methods accessible from json-rpc by adding a @JsonRpc annotation. you can't call methods with no @JsonRpc annotation. if you use this context-object with the servlet it must have an empty constructur and must be listed in the services parameter.
+to define a service you need to create a common java object. you can make some methods accessible from json-rpc by adding a @JsonRpc annotation. you can't call methods with no @JsonRpc annotation. if you use this context-object with the servlet it must have an empty constructor and must be listed in the services parameter.
 
 {{{
 /**
