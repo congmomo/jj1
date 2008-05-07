@@ -11,7 +11,29 @@ jj1 contains a service handler and a service proxy. the service handler is used 
 if we have a service on http://example.xx/jj1/test and we want to call the method echo which has a string as parameter and returns this string we can use following code:
 {{{
 ServiceProxy proxy = new ServiceProxy("http://jsolait.net/services/test.jsonrpc");
-String result = (String)proxy.call("echoo", "hello you!");
+String result = (String)proxy.call("echo", "hello you!");
 System.out.println(result);
 }}}
 the above example should print "hello you!". if an error ocurs a JsonRpcException will be thrown.
+
+= service handler =
+when you create a service handler you have to provide a context object. this object should provide the methods you want to call. the service handler is best used with a servlet. a simple one is provided and can be configured into a webapps web.xml like this:
+{{{
+<web-app>
+  <servlet>
+    <servlet-name>Jj1Servlet</servlet-name>
+    <servlet-class>com.googlecode.jj1.Jj1Servlet</servlet-class>
+    <init-param>
+      <param-name>services</param-name>
+      <param-value>test=com.googlecode.jj1.crap.TestServices</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jj1Servlet</servlet-name>
+    <url-pattern>/jj1/*</url-pattern>
+  </servlet-mapping>
+</web-app>
+}}}
+to configure the servlet you have to set the services parameter. it's a comma separated list of name = value pairs. the name is the contextname of the service, value is the name of the class. the contextname must be appended to the url. if a context named root is defined this service is called if you call the url without a context.
+if the context path of the webapp is "webservice", the url to call a method from the com.googlecode.jj1.crap.TestServices class is like "http://domain.xx/webservice/jj1/test". 
+
