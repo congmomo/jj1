@@ -41,3 +41,18 @@ if the context path of the webapp is "webservice", the url to call a method from
 
 == context objects ==
 to define a service you need to create a common java object. you can make some methods accessible from json-rpc by adding a @JsonRpc annotation. you can't call methods with no @JsonRpc annotation. if you use this context-object with the servlet it must have an empty constructur and must be listed in the services parameter.
+
+{{{
+/**
+ * this method cannot be called as a json service
+ */
+public void doSomethingDangerous(){
+  //...
+}
+	
+@JsonRpc
+public String echo(String in) {
+  return in;
+}
+
+}}}
