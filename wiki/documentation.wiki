@@ -7,6 +7,9 @@ jj1 is an json-rpc implementation for java. json-rpc is a lightweight rpc protoc
   * stringtree json: http://www.stringtree.org/stringtree-json.html
 jj1 contains a service handler and a service proxy. the service handler is used by the server side to provide a json service. service proxy can be used from the client to access a service.
 
+= installation =
+download the latest jj1 release from [http://code.google.com/p/jj1/downloads/list downloads]. it comes as a jar file and has to be in the classpath. additionally you need the stringtree json jar from [https://sourceforge.net/project/showfiles.php?group_id=80689&package_id=226281&release_id=496375 stringtree json download]
+
 = service proxy =
 if we have a service on http://jsolait.net/services/test.jsonrpc and we want to call the method echo which has a string as parameter and returns a string, we can use following code:
 {{{
