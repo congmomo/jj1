@@ -3,10 +3,10 @@
 <web-app>
 	<servlet>
 		<servlet-name>Jj1Servlet</servlet-name>
-		<servlet-class>com.googlecode.jj1.Jj1Servlet</servlet-class>
+		<servlet-class>com.googlecode.jj1.server.Jj1Servlet</servlet-class>
 		<init-param>
 			<param-name>services</param-name>
-			<param-value>root=com.googlecode.jj1.crap.TestServices</param-value>
+			<param-value>root=com.googlecode.jj1.tests.TestServices</param-value>
 		</init-param>
 	</servlet>
 
