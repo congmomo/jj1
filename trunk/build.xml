@@ -1,0 +1,42 @@
+<project name="jj1" default="dist" basedir=".">
+  <path id="clpath">
+    <pathelement location="lib/"/>
+    <pathelement path="."/>
+    <fileset dir="lib">
+      <include name="*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="init">
+    <echo message="jj1 build"/>
+    <echo message="os = -${os.name}-"/>
+    <tstamp/>
+    <mkdir dir="dist"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <javac srcdir="src" destdir="bin" classpathref="clpath"/>
+  </target>
+
+  <target name="dist" depends="compile">
+    <mkdir dir="dist/lib"/>
+    <jar jarfile="dist/lib/jj1.0.1.jar">
+    	<fileset dir="bin">
+    	</fileset>
+    </jar>
+
+  	<copy todir="webapp/WEB-INF/lib">
+        <fileset dir="dist/lib/">
+        </fileset>
+        <fileset dir="lib/">
+        </fileset>
+    </copy>
+  	
+  	<touch file="webapp/WEB-INF/web.xml" />
+  </target>
+
+  <target name="clean">
+    <delete dir="bin"/>
+    <delete dir="dist"/>
+  </target>
+</project>
