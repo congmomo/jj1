@@ -33,11 +33,11 @@ public class ServiceProxy {
 		return new ServiceProxy(url, name == null ? property : name + "." + property);
 	}
 
-	public Object execute(String mName, Object... parameters) throws JsonRpcException {
-		return get(mName).call(parameters);
+	public Object call(String mName, Object... parameters) throws JsonRpcException {
+		return get(mName).execute(parameters);
 	}
 
-	public Object call(Object... parameters) throws JsonRpcException {
+	public Object execute(Object... parameters) throws JsonRpcException {
 		try {
 			Map<String, Object> values = new HashMap<String, Object>();
 			values.put("method", name);
@@ -82,7 +82,7 @@ public class ServiceProxy {
 			} catch (Exception e) {
 				throw new JsonRpcException("cannot decode json", e);
 			}
-
+			
 			if (result.get("error") != null) {
 				throw new JsonRpcException(result.get("error").toString());
 			}

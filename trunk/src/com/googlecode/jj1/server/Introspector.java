@@ -1,5 +1,6 @@
 package com.googlecode.jj1.server;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,6 +118,17 @@ public class Introspector {
 			Class<?>[] argz = m.getParameterTypes();
 
 			if (!m.getName().equals(methodName)) {
+				valid = false;
+			}
+			
+			System.out.println("annotations for:" + m.getName());
+			
+			for(Annotation a:m.getAnnotations()){
+				System.out.println(a);
+			}
+			
+			
+			if(!m.isAnnotationPresent(JsonRpc.class)){
 				valid = false;
 			}
 
