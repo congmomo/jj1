@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+	<servlet>
+		<servlet-name>Jj1Servlet</servlet-name>
+		<servlet-class>com.googlecode.jj1.server.Jj1Servlet</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value>root=com.googlecode.jj1.tests.TestServices</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Jj1Servlet</servlet-name>
+		<url-pattern>/jj1/*</url-pattern>
+	</servlet-mapping>
+</web-app>
+
+
